@@ -1,1 +1,61 @@
-
+{
+  "course": "cell_biology",
+  "unit": 1,
+  "lesson": 1,
+  "title": "What is a cell?",
+  "unit_title": "The Cell",
+  "read": {
+    "heading": "What is a cell?",
+    "paragraphs": [
+      "Every living thing you've ever seen, a tree, a mushroom, a dog, you, is made of cells. A cell is the smallest unit that can be called <strong>alive</strong>. It can take in energy, grow, respond to its surroundings, and make copies of itself. Nothing smaller than a cell can do all of that.",
+      "Some organisms are made of just one cell. Bacteria are a good example: a single cell, living its entire life as a complete organism. Other organisms, like you, are made of trillions of cells working together. A human body has somewhere around 37 trillion of them, each one specialised for a different job (skin cells, nerve cells, muscle cells), but every single one started out as a basic cell with the same fundamental design.",
+      "This is one of the most important ideas in all of biology: <strong>every living thing is made of one or more cells</strong>, and every cell comes from another cell dividing. There's no other way for life to get started or to continue. Trace any living thing back far enough and you'll find a cell."
+    ]
+  },
+  "example": {
+    "label": "Example",
+    "text": "Think of a cell like a single brick. One brick on its own can't do much. But stack enough bricks together in the right arrangement and you get a wall, a house, a city. Your body works the same way: trillions of individual cells, each one simple on its own, combine to build something far more complex than any single one of them could achieve alone."
+  },
+  "read_extra": [
+    "So what actually makes something 'alive' versus not? Scientists generally agree on a short list: living things need to take in and use energy, they need to grow and develop, they respond to changes in their environment, and they can reproduce. A rock doesn't do any of these things. A cell does all of them, which is exactly why the cell, not the atom or the organ, is considered the basic unit of life."
+  ],
+  "dig_deeper": null,
+  "questions": [
+    {
+      "type": "true_false",
+      "text": "Every living thing is made of at least one cell.",
+      "correct": true,
+      "feedback_correct": "That's the foundation of cell theory. There's no known form of life that exists without being made of cells.",
+      "feedback_incorrect": "Actually, this is true. Every known living organism, from bacteria to humans, is made of one or more cells. Scroll up to revisit this."
+    },
+    {
+      "type": "true_false",
+      "text": "A single bacterium is too simple to be considered a complete living organism on its own.",
+      "correct": false,
+      "feedback_correct": "Right. A single bacterial cell is a complete, fully functioning organism. It doesn't need other cells to be alive.",
+      "feedback_incorrect": "Not quite. A single bacterium is a complete living organism by itself. It can take in energy, grow, respond to its environment, and reproduce, all as one cell. Scroll up to revisit this."
+    },
+    {
+      "type": "fill_in_blank",
+      "text": "Complete the sentence:",
+      "sentence_before": "Every cell comes from another cell ",
+      "sentence_after": ".",
+      "answer": "dividing",
+      "feedback_correct": "Exactly. New cells are only ever made by existing cells dividing in two. There's no other way.",
+      "feedback_incorrect": "The correct word is dividing. Every new cell comes from an existing cell splitting into two. Scroll up to revisit this."
+    },
+    {
+      "type": "matching",
+      "text": "Match each description to what it's describing.",
+      "pairs": [
+        { "left": "A single-celled organism", "right": "Bacteria" },
+        { "left": "An organism made of trillions of cells", "right": "A human" },
+        { "left": "The smallest unit that can be called alive", "right": "A cell" }
+      ],
+      "feedback_correct": "All matched correctly. These distinctions are the building blocks for everything else in this unit.",
+      "feedback_incorrect": "A couple of these didn't match up. Scroll up to revisit the reading before trying again."
+    }
+  ],
+  "xp_per_question": 15,
+  "completion_xp": 15
+}
