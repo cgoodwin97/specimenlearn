@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specimen Learn — Biology, one lesson at a time</title>
+<meta name="description" content="Specimen Learn — a guided biology learning tool. Start with cell biology and build from the ground up.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%2256%22%20height%3D%2256%22%20rx%3D%2212%22%20fill%3D%22%23EAEEE6%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22%231F6F5C%22%20stroke-width%3D%221.5%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2220%22%20fill%3D%22%231F6F5C%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2234%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%20font-family%3D%22Fraunces%2C%20Georgia%2C%20serif%22%20font-style%3D%22italic%22%20font-size%3D%2224%22%20fill%3D%22%23EAEEE6%22%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,400;1,500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EAEEE6;
+    --card: #FAFBF7;
+    --ink: #1E2A22;
+    --moss: #1F6F5C;
+    --rust: #B6481E;
+    --mute: #6E7568;
+    --line: #D4D8D0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+
+  .login-wrap {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Seal + wordmark */
+  .login-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .login-seal {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--moss);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .login-seal span {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--paper);
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .login-wordmark-top {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--mute);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+  }
+
+  .login-wordmark-name {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 30px;
+    color: var(--moss);
+    display: block;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  .login-tagline {
+    font-size: 13px;
+    color: var(--mute);
+    margin-top: 0.35rem;
+    text-align: center;
+  }
+
+  /* Card */
+  .login-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  /* Tabs */
+  .login-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.25rem;
+  }
+
+  .login-tab {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem 0.6rem;
+    color: var(--mute);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    transition: color 0.15s;
+  }
+
+  .login-tab.active {
+    color: var(--moss);
+    border-bottom-color: var(--moss);
+  }
+
+  .login-tab:hover:not(.active) {
+    color: var(--ink);
+  }
+
+  /* Fields */
+  .field-group {
+    margin-bottom: 0.85rem;
+  }
+
+  .field-label {
+    font-size: 12px;
+    color: var(--mute);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .field-input {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .field-input:focus {
+    border-color: var(--moss);
+  }
+
+  /* Error message */
+  .login-error {
+    font-size: 12px;
+    color: var(--rust);
+    background: rgba(182, 72, 30, 0.07);
+    border: 1px solid rgba(182, 72, 30, 0.2);
+    border-radius: 7px;
+    padding: 8px 12px;
+    margin-bottom: 0.85rem;
+    display: none;
+  }
+
+  .login-error.visible {
+    display: block;
+  }
+
+  /* Submit button */
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--moss);
+    color: var(--paper);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.25rem;
+    transition: opacity 0.15s;
+  }
+
+  .login-btn:hover { opacity: 0.9; }
+  .login-btn:disabled { opacity: 0.6; cursor: default; }
+
+  /* Footer note */
+  .login-footer {
+    font-size: 12px;
+    color: var(--mute);
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.6;
+  }
+
+  .login-footer a {
+    color: var(--moss);
+    text-decoration: none;
+  }
+
+  .login-footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* Specimen link below card */
+  .specimen-link {
+    font-size: 12px;
+    color: var(--mute);
+    text-align: center;
+    margin-top: 1.25rem;
+  }
+
+  .specimen-link a {
+    color: var(--mute);
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+  }
+
+  .specimen-link a:hover {
+    color: var(--moss);
+    text-decoration-color: var(--moss);
+  }
+
+  /* Loading state */
+  .login-loading {
+    display: none;
+    text-align: center;
+    font-size: 13px;
+    color: var(--mute);
+    padding: 2rem 0;
+  }
+
+  body.checking .login-card { display: none; }
+  body.checking .login-loading { display: block; }
+</style>
+</head>
+<body class="checking">
+
+<div class="login-wrap">
+  <div class="login-brand">
+    <div class="login-seal" aria-hidden="true"><span>S</span></div>
+    <span class="login-wordmark-top">Specimen</span>
+    <span class="login-wordmark-name">Learn</span>
+    <p class="login-tagline">Biology, one lesson at a time.</p>
+  </div>
+
+  <p class="login-loading">Checking session…</p>
+
+  <div class="login-card">
+    <div class="login-tabs" role="tablist">
+      <button class="login-tab active" role="tab" aria-selected="true" data-tab="signin">Sign in</button>
+      <button class="login-tab" role="tab" aria-selected="false" data-tab="register">Create account</button>
+    </div>
+
+    <div id="error-msg" class="login-error" role="alert"></div>
+
+    <!-- Sign in form -->
+    <div id="panel-signin">
+      <div class="field-group">
+        <label class="field-label" for="signin-username">Username</label>
+        <input class="field-input" type="text" id="signin-username" autocomplete="username" placeholder="your username" />
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="signin-password">Password</label>
+        <input class="field-input" type="password" id="signin-password" autocomplete="current-password" placeholder="••••••••" />
+      </div>
+      <button class="login-btn" id="signin-btn">Sign in</button>
+      <p class="login-footer">Have a Specimen account? <a href="https://specimen.site" target="_blank">Your login works here too.</a></p>
+    </div>
+
+    <!-- Register form -->
+    <div id="panel-register" style="display:none;">
+      <div class="field-group">
+        <label class="field-label" for="reg-username">Username</label>
+        <input class="field-input" type="text" id="reg-username" autocomplete="username" placeholder="at least 5 characters, no spaces" />
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="reg-password">Password</label>
+        <input class="field-input" type="password" id="reg-password" autocomplete="new-password" placeholder="at least 8 characters" />
+      </div>
+      <button class="login-btn" id="register-btn">Create account</button>
+      <p class="login-footer">Already have an account? Switch to sign in above.</p>
+    </div>
+  </div>
+
+  <p class="specimen-link"><a href="https://specimen.site">← Back to Specimen</a></p>
+</div>
+
+<script>
+  const API = 'https://specimen.site/auth';
+
+  // Check session on load — redirect to home if already signed in
+  async function checkSession() {
+    try {
+      const res = await fetch(`${API}/me`, { credentials: 'include' });
+      const data = await res.json();
+      if (data.ok) {
+        window.location.href = '/home';
+        return;
+      }
+    } catch (e) { /* not signed in, show login */ }
+    document.body.classList.remove('checking');
+  }
+
+  checkSession();
+
+  // Tab switching
+  const tabs = document.querySelectorAll('.login-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      document.getElementById('panel-signin').style.display = tab.dataset.tab === 'signin' ? '' : 'none';
+      document.getElementById('panel-register').style.display = tab.dataset.tab === 'register' ? '' : 'none';
+      clearError();
+    });
+  });
+
+  // Error helpers
+  function showError(msg) {
+    const el = document.getElementById('error-msg');
+    el.textContent = msg;
+    el.classList.add('visible');
+  }
+
+  function clearError() {
+    const el = document.getElementById('error-msg');
+    el.textContent = '';
+    el.classList.remove('visible');
+  }
+
+  // Sign in
+  document.getElementById('signin-btn').addEventListener('click', async () => {
+    clearError();
+    const username = document.getElementById('signin-username').value.trim();
+    const password = document.getElementById('signin-password').value;
+    if (!username || !password) { showError('Please enter your username and password.'); return; }
+
+    const btn = document.getElementById('signin-btn');
+    btn.disabled = true;
+    btn.textContent = 'Signing in…';
+
+    try {
+      const res = await fetch(`${API}/login`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        window.location.href = '/home';
+      } else {
+        showError(data.error || 'Something went wrong. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Sign in';
+      }
+    } catch (e) {
+      showError('Could not connect. Please try again.');
+      btn.disabled = false;
+      btn.textContent = 'Sign in';
+    }
+  });
+
+  // Allow Enter key on sign in fields
+  ['signin-username', 'signin-password'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('signin-btn').click();
+    });
+  });
+
+  // Register
+  document.getElementById('register-btn').addEventListener('click', async () => {
+    clearError();
+    const username = document.getElementById('reg-username').value.trim();
+    const password = document.getElementById('reg-password').value;
+    if (!username || !password) { showError('Please fill in all fields.'); return; }
+
+    const btn = document.getElementById('register-btn');
+    btn.disabled = true;
+    btn.textContent = 'Creating account…';
+
+    try {
+      const res = await fetch(`${API}/register`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        window.location.href = '/home';
+      } else {
+        showError(data.error || 'Something went wrong. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Create account';
+      }
+    } catch (e) {
+      showError('Could not connect. Please try again.');
+      btn.disabled = false;
+      btn.textContent = 'Create account';
+    }
+  });
+
+  // Allow Enter key on register fields
+  ['reg-username', 'reg-password'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('register-btn').click();
+    });
+  });
+</script>
+</body>
+</html>
