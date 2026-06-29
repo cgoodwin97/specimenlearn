@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specimen Learn</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%2256%22%20height%3D%2256%22%20rx%3D%2212%22%20fill%3D%22%23EAEEE6%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22%231F6F5C%22%20stroke-width%3D%221.5%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2220%22%20fill%3D%22%231F6F5C%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2234%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%20font-family%3D%22Fraunces%2C%20Georgia%2C%20serif%22%20font-style%3D%22italic%22%20font-size%3D%2224%22%20fill%3D%22%23EAEEE6%22%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,400;1,500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EAEEE6;
+    --card: #FAFBF7;
+    --ink: #1E2A22;
+    --moss: #1F6F5C;
+    --rust: #B6481E;
+    --mute: #6E7568;
+    --line: #D4D8D0;
+    --nav-bg: #1E2A22;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    width: 210px;
+    flex-shrink: 0;
+    background: var(--nav-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 0.25rem;
+    margin-bottom: 2rem;
+    text-decoration: none;
+  }
+
+  .nav-seal {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--moss);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .nav-seal span {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--paper);
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .nav-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-title-top {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: rgba(234,238,230,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .nav-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--paper);
+    line-height: 1.1;
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.12s;
+  }
+
+  .nav-item:hover:not(.active) {
+    background: rgba(234,238,230,0.05);
+  }
+
+  .nav-item.active {
+    background: rgba(234,238,230,0.09);
+  }
+
+  .nav-icon {
+    font-size: 16px;
+    color: rgba(234,238,230,0.45);
+    line-height: 1;
+  }
+
+  .nav-item.active .nav-icon,
+  .nav-item:hover .nav-icon {
+    color: var(--paper);
+  }
+
+  .nav-text {
+    font-size: 13px;
+    color: rgba(234,238,230,0.45);
+  }
+
+  .nav-item.active .nav-text,
+  .nav-item:hover .nav-text {
+    color: var(--paper);
+    font-weight: 500;
+  }
+
+  .nav-spacer { flex: 1; }
+
+  .nav-user {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    background: rgba(234,238,230,0.06);
+    cursor: pointer;
+    position: relative;
+  }
+
+  .nav-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--moss);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--paper);
+    flex-shrink: 0;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .nav-user-info { flex: 1; min-width: 0; }
+
+  .nav-user-name {
+    font-size: 12px;
+    color: rgba(234,238,230,0.8);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-user-level {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: rgba(234,238,230,0.35);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* User dropdown */
+  .nav-dropdown {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #2a3a30;
+    border: 1px solid rgba(234,238,230,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: none;
+    z-index: 10;
+  }
+
+  .nav-dropdown.open { display: block; }
+
+  .nav-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(234,238,230,0.7);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.1s;
+  }
+
+  .nav-dropdown-item:hover {
+    background: rgba(234,238,230,0.06);
+    color: var(--paper);
+  }
+
+  .nav-dropdown-item.signout {
+    color: rgba(182,72,30,0.8);
+    border-top: 1px solid rgba(234,238,230,0.07);
+  }
+
+  .nav-dropdown-item.signout:hover {
+    background: rgba(182,72,30,0.08);
+    color: #B6481E;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: 210px;
+    flex: 1;
+    padding: 2rem 2.5rem;
+    max-width: 860px;
+  }
+
+  .main-greeting {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    line-height: 1.2;
+  }
+
+  .main-sub {
+    font-size: 13px;
+    color: var(--mute);
+    margin-bottom: 1.75rem;
+  }
+
+  /* XP strip */
+  .xp-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 11px 16px;
+    margin-bottom: 2rem;
+  }
+
+  .xp-level-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--moss);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .xp-bar-outer {
+    flex: 1;
+    height: 5px;
+    background: var(--line);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .xp-bar-inner {
+    height: 100%;
+    background: var(--moss);
+    border-radius: 99px;
+    transition: width 0.6s ease;
+    width: 0%;
+  }
+
+  .xp-count {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--mute);
+    white-space: nowrap;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mute);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Course grid */
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .course-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.15s;
+  }
+
+  .course-card:hover:not(.coming) {
+    border-color: var(--moss);
+  }
+
+  .course-card.coming {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  .course-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: rgba(31,111,92,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    margin-bottom: 0.75rem;
+  }
+
+  .course-icon.dim { background: var(--line); }
+
+  .course-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .course-meta {
+    font-size: 11px;
+    color: var(--mute);
+    margin-bottom: 0.6rem;
+  }
+
+  .course-progress-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .course-progress-bar {
+    flex: 1;
+    height: 4px;
+    background: var(--line);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .course-progress-fill {
+    height: 100%;
+    background: var(--moss);
+    border-radius: 99px;
+  }
+
+  .course-progress-pct {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--moss);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .coming-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mute);
+    background: var(--line);
+    padding: 2px 8px;
+    border-radius: 99px;
+    display: inline-block;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    background: linear-gradient(90deg, var(--line) 25%, var(--card) 50%, var(--line) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+    border-radius: 4px;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Page hidden until session confirmed */
+  body.loading .main { opacity: 0; }
+  body.ready .main { opacity: 1; transition: opacity 0.2s; }
+</style>
+</head>
+<body class="loading">
+
+<!-- NAV -->
+<nav class="nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/home">
+    <div class="nav-seal" aria-hidden="true"><span>S</span></div>
+    <div class="nav-title-wrap">
+      <span class="nav-title-top">Specimen</span>
+      <span class="nav-title">Learn</span>
+    </div>
+  </a>
+
+  <div class="nav-items">
+    <a class="nav-item active" href="/home" aria-current="page">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span class="nav-text">Home</span>
+    </a>
+    <a class="nav-item" href="/learn" >
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span class="nav-text">Learn</span>
+    </a>
+    <a class="nav-item" href="/profile">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span class="nav-text">Profile</span>
+    </a>
+  </div>
+
+  <div class="nav-spacer"></div>
+
+  <div class="nav-user" id="nav-user" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
+    <div class="nav-avatar" id="nav-avatar">–</div>
+    <div class="nav-user-info">
+      <div class="nav-user-name" id="nav-username">–</div>
+      <div class="nav-user-level" id="nav-level">–</div>
+    </div>
+    <div class="nav-dropdown" id="nav-dropdown">
+      <a class="nav-dropdown-item" href="https://specimen.site" target="_blank">Specimen ↗</a>
+      <button class="nav-dropdown-item signout" id="signout-btn">Sign out</button>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+  <h1 class="main-greeting" id="greeting">Welcome back.</h1>
+  <p class="main-sub">Pick up where you left off, or start something new.</p>
+
+  <div class="xp-strip">
+    <span class="xp-level-label" id="xp-level">–</span>
+    <div class="xp-bar-outer">
+      <div class="xp-bar-inner" id="xp-bar"></div>
+    </div>
+    <span class="xp-count" id="xp-count">– XP</span>
+  </div>
+
+  <p class="section-label">Courses</p>
+
+  <div class="course-grid">
+    <!-- Cell Biology — live -->
+    <a class="course-card" href="/cellbiology" id="card-cellbiology">
+      <div class="course-icon">🔬</div>
+      <p class="course-name">Cell Biology</p>
+      <p class="course-meta" id="cb-meta">6 units · 28 lessons</p>
+      <div class="course-progress-row">
+        <div class="course-progress-bar">
+          <div class="course-progress-fill" id="cb-progress-fill" style="width:0%"></div>
+        </div>
+        <span class="course-progress-pct" id="cb-progress-pct">0%</span>
+      </div>
+    </a>
+
+    <!-- Coming soon -->
+    <div class="course-card coming">
+      <div class="course-icon dim">🧬</div>
+      <p class="course-name">Genetics</p>
+      <p class="course-meta">Coming soon</p>
+      <span class="coming-badge">Coming soon</span>
+    </div>
+
+    <div class="course-card coming">
+      <div class="course-icon dim">🦠</div>
+      <p class="course-name">Virology</p>
+      <p class="course-meta">Coming soon</p>
+      <span class="coming-badge">Coming soon</span>
+    </div>
+
+    <div class="course-card coming">
+      <div class="course-icon dim">🧪</div>
+      <p class="course-name">Biochemistry</p>
+      <p class="course-meta">Coming soon</p>
+      <span class="coming-badge">Coming soon</span>
+    </div>
+  </div>
+</main>
+
+<script>
+  const API = 'https://specimen.site/auth';
+
+  const LEVEL_TITLES = [
+    'Curious Mind', 'Microscopist', 'Lab Trainee', 'Field Researcher',
+    'Lab Technician', 'Research Associate', 'Research Scientist',
+    'Senior Scientist', 'Research Fellow', 'Principal Scientist',
+  ];
+
+  const LEVEL_THRESHOLDS = [0, 100, 300, 600, 1000, 1500, 2200, 3000, 4000, 5500];
+
+  function calcLevel(xp) {
+    let level = 1;
+    for (let i = LEVEL_THRESHOLDS.length - 1; i >= 0; i--) {
+      if (xp >= LEVEL_THRESHOLDS[i]) { level = i + 1; break; }
+    }
+    return Math.min(level, 10);
+  }
+
+  function xpProgress(xp, level) {
+    const current = LEVEL_THRESHOLDS[level - 1];
+    const next = LEVEL_THRESHOLDS[level] ?? LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1];
+    if (level >= 10) return 100;
+    return Math.round(((xp - current) / (next - current)) * 100);
+  }
+
+  function initials(name) {
+    return name.slice(0, 2).toUpperCase();
+  }
+
+  // Session check — redirect to login if not signed in
+  async function init() {
+    try {
+      const res = await fetch(`${API}/me`, { credentials: 'include' });
+      const data = await res.json();
+      if (!data.ok) { window.location.href = '/'; return; }
+
+      const user = data.user;
+      const level = calcLevel(user.xp);
+      const title = LEVEL_TITLES[level - 1];
+      const pct = xpProgress(user.xp, level);
+      const nextXp = level < 10 ? LEVEL_THRESHOLDS[level] : null;
+      const displayName = user.first_name || user.username;
+
+      // Greeting
+      document.getElementById('greeting').textContent = `Welcome back, ${displayName}.`;
+
+      // Nav user
+      document.getElementById('nav-avatar').textContent = initials(displayName);
+      document.getElementById('nav-username').textContent = displayName;
+      document.getElementById('nav-level').textContent = title;
+
+      // XP strip
+      document.getElementById('xp-level').textContent = title;
+      document.getElementById('xp-bar').style.width = pct + '%';
+      document.getElementById('xp-count').textContent = nextXp
+        ? `${user.xp} / ${nextXp} XP`
+        : `${user.xp} XP · Max level`;
+
+      // Load cell biology progress from localStorage
+      // (will be replaced with server-side progress later)
+      const cbProgress = parseInt(localStorage.getItem('sl_cb_progress') || '0', 10);
+      if (cbProgress > 0) {
+        document.getElementById('cb-progress-fill').style.width = cbProgress + '%';
+        document.getElementById('cb-progress-pct').textContent = cbProgress + '%';
+      }
+
+      document.body.classList.remove('loading');
+      document.body.classList.add('ready');
+
+    } catch (e) {
+      window.location.href = '/';
+    }
+  }
+
+  init();
+
+  // Nav user dropdown
+  const navUser = document.getElementById('nav-user');
+  const dropdown = document.getElementById('nav-dropdown');
+
+  navUser.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = dropdown.classList.toggle('open');
+    navUser.setAttribute('aria-expanded', open);
+  });
+
+  document.addEventListener('click', () => {
+    dropdown.classList.remove('open');
+    navUser.setAttribute('aria-expanded', 'false');
+  });
+
+  navUser.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navUser.click();
+    }
+  });
+
+  // Sign out
+  document.getElementById('signout-btn').addEventListener('click', async () => {
+    try {
+      await fetch(`${API}/logout`, { method: 'POST', credentials: 'include' });
+    } catch (e) { /* continue regardless */ }
+    window.location.href = '/';
+  });
+</script>
+</body>
+</html>
