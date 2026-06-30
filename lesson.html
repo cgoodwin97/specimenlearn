@@ -161,6 +161,8 @@
   .match-col-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--mute); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
   .match-item { padding: 9px 11px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); font-size: 12.5px; color: var(--ink); cursor: pointer; margin-bottom: 8px; transition: border-color 0.15s, background 0.15s; }
   .match-item.selected { border-color: var(--moss); background: rgba(31,111,92,0.08); color: var(--moss); }
+  .match-item.paired { border-color: var(--moss); background: rgba(31,111,92,0.14); color: var(--moss); font-weight: 500; }
+  .match-item.paired::after { content: " ✓"; }
   .match-item.matched-correct { border-color: var(--moss); background: rgba(31,111,92,0.08); color: var(--moss); opacity: 0.7; }
   .match-item.matched-incorrect { border-color: var(--rust); background: rgba(182,72,30,0.07); color: var(--rust); opacity: 0.7; }
   .match-item:disabled, .match-item.locked { cursor: default; }
@@ -439,7 +441,16 @@ function renderQuestion(data, qIndex) {
 
     interactive.querySelectorAll('[data-side="left"]').forEach(btn => {
       btn.addEventListener('click', () => {
-        if (btn.classList.contains('locked')) return;
+        if (btn.disabled) return;
+        // If this one is already paired, unpair it first
+        if (btn.classList.contains('paired')) {
+          const pairedVal = matches[btn.dataset.idx];
+          delete matches[btn.dataset.idx];
+          btn.classList.remove('paired');
+          const rightBtn = interactive.querySelector(`[data-side="right"][data-val="${pairedVal}"]`);
+          if (rightBtn) { rightBtn.classList.remove('paired'); rightBtn.disabled = false; }
+          checkAllMatched();
+        }
         interactive.querySelectorAll('[data-side="left"]').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         selectedLeft = btn.dataset.idx;
@@ -448,12 +459,11 @@ function renderQuestion(data, qIndex) {
 
     interactive.querySelectorAll('[data-side="right"]').forEach(btn => {
       btn.addEventListener('click', () => {
-        if (selectedLeft === null || btn.classList.contains('locked')) return;
+        if (selectedLeft === null || btn.disabled) return;
         const leftBtn = interactive.querySelector(`[data-side="left"][data-idx="${selectedLeft}"]`);
         leftBtn.classList.remove('selected');
-        leftBtn.classList.add('locked');
-        leftBtn.disabled = true;
-        btn.classList.add('locked');
+        leftBtn.classList.add('paired');
+        btn.classList.add('paired');
         btn.disabled = true;
         matches[selectedLeft] = btn.dataset.val;
         selectedLeft = null;
@@ -473,7 +483,7 @@ function renderQuestion(data, qIndex) {
           const leftBtn = interactive.querySelector(`[data-side="left"][data-idx="${i}"]`);
           const correctRight = q.pairs[i].right;
           const isCorrect = matches[i] === correctRight;
-          leftBtn.classList.remove('locked');
+          leftBtn.classList.remove('paired');
           leftBtn.classList.add(isCorrect ? 'matched-correct' : 'matched-incorrect');
         });
       });
