@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — Specimen Learn</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%2256%22%20height%3D%2256%22%20rx%3D%2212%22%20fill%3D%22%23EAEEE6%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2224%22%20fill%3D%22none%22%20stroke%3D%22%231F6F5C%22%20stroke-width%3D%221.5%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2220%22%20fill%3D%22%231F6F5C%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2234%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22central%22%20font-family%3D%22Fraunces%2C%20Georgia%2C%20serif%22%20font-style%3D%22italic%22%20font-size%3D%2224%22%20fill%3D%22%23EAEEE6%22%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,400;1,500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EAEEE6;
+    --card: #FAFBF7;
+    --ink: #1E2A22;
+    --moss: #1F6F5C;
+    --rust: #B6481E;
+    --mute: #6E7568;
+    --line: #D4D8D0;
+    --nav-bg: #1E2A22;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+  }
+
+  /* ── NAV (shared pattern) ── */
+  .nav { width: 210px; flex-shrink: 0; background: var(--nav-bg); min-height: 100vh; display: flex; flex-direction: column; padding: 1.5rem 1rem; position: fixed; top: 0; left: 0; bottom: 0; }
+  .nav-brand { display: flex; align-items: center; gap: 10px; padding: 0 0.25rem; margin-bottom: 2rem; text-decoration: none; }
+  .nav-seal { width: 30px; height: 30px; border-radius: 50%; background: var(--moss); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .nav-seal span { font-family: 'Fraunces', serif; font-style: italic; color: var(--paper); font-size: 15px; line-height: 1; }
+  .nav-title-wrap { display: flex; flex-direction: column; }
+  .nav-title-top { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: rgba(234,238,230,0.4); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.3; }
+  .nav-title { font-family: 'Fraunces', serif; font-style: italic; font-size: 16px; color: var(--paper); line-height: 1.1; }
+  .nav-items { display: flex; flex-direction: column; gap: 2px; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; cursor: pointer; text-decoration: none; transition: background 0.12s; }
+  .nav-item:hover:not(.active) { background: rgba(234,238,230,0.05); }
+  .nav-item.active { background: rgba(234,238,230,0.09); }
+  .nav-icon { font-size: 16px; color: rgba(234,238,230,0.45); line-height: 1; }
+  .nav-item.active .nav-icon, .nav-item:hover .nav-icon { color: var(--paper); }
+  .nav-text { font-size: 13px; color: rgba(234,238,230,0.45); }
+  .nav-item.active .nav-text, .nav-item:hover .nav-text { color: var(--paper); font-weight: 500; }
+  .nav-spacer { flex: 1; }
+  .nav-user { display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-radius: 8px; background: rgba(234,238,230,0.06); cursor: pointer; position: relative; }
+  .nav-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--moss); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--paper); flex-shrink: 0; }
+  .nav-user-info { flex: 1; min-width: 0; }
+  .nav-user-name { font-size: 12px; color: rgba(234,238,230,0.8); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nav-user-level { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: rgba(234,238,230,0.35); }
+  .nav-dropdown { position: absolute; bottom: calc(100% + 6px); left: 0; right: 0; background: #2a3a30; border: 1px solid rgba(234,238,230,0.1); border-radius: 8px; overflow: hidden; display: none; z-index: 10; }
+  .nav-dropdown.open { display: block; }
+  .nav-dropdown-item { display: block; width: 100%; padding: 10px 14px; font-size: 12px; color: rgba(234,238,230,0.7); background: none; border: none; text-align: left; cursor: pointer; text-decoration: none; }
+  .nav-dropdown-item:hover { background: rgba(234,238,230,0.06); color: var(--paper); }
+  .nav-dropdown-item.signout { color: rgba(182,72,30,0.8); border-top: 1px solid rgba(234,238,230,0.07); }
+  .nav-dropdown-item.signout:hover { background: rgba(182,72,30,0.08); color: #B6481E; }
+
+  /* ── MAIN ── */
+  .main { margin-left: 210px; flex: 1; padding: 2rem 2.5rem; max-width: 760px; }
+
+  .profile-heading { font-family: 'Fraunces', serif; font-style: italic; font-size: 26px; color: var(--ink); margin-bottom: 1.75rem; }
+
+  /* Identity card */
+  .identity-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; display: flex; gap: 1.25rem; align-items: center; }
+
+  .identity-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--moss); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500; color: var(--paper); flex-shrink: 0; }
+
+  .identity-info { flex: 1; min-width: 0; }
+
+  .identity-name-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+  .identity-name { font-family: 'Fraunces', serif; font-style: italic; font-size: 19px; color: var(--ink); }
+  .identity-username { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--mute); }
+
+  .identity-level-badge { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.05em; color: var(--moss); background: rgba(31,111,92,0.1); padding: 3px 10px; border-radius: 99px; display: inline-block; margin-top: 4px; }
+
+  /* XP card */
+  .xp-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+
+  .xp-card-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.6rem; }
+  .xp-card-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
+  .xp-card-count { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--moss); font-weight: 500; }
+
+  .xp-bar-outer { width: 100%; height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin-bottom: 0.5rem; }
+  .xp-bar-inner { height: 100%; background: var(--moss); border-radius: 99px; transition: width 0.6s ease; width: 0%; }
+
+  .xp-next-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--mute); }
+
+  /* Stats grid */
+  .stats-section-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-bottom: 0.75rem; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+
+  .stat-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem; text-align: center; }
+
+  .stat-card-icon { font-size: 20px; margin-bottom: 0.5rem; }
+  .stat-card-value { font-family: 'Fraunces', serif; font-style: italic; font-size: 24px; color: var(--moss); line-height: 1.1; margin-bottom: 3px; }
+  .stat-card-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--mute); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .stat-card.streak-active .stat-card-value { color: var(--rust); }
+
+  /* Settings card */
+  .settings-card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+
+  .settings-label { font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); margin-bottom: 0.75rem; }
+
+  .field-group { margin-bottom: 0.85rem; }
+  .field-label { font-size: 12px; color: var(--mute); margin-bottom: 4px; display: block; }
+  .field-input { width: 100%; max-width: 280px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink); outline: none; transition: border-color 0.15s; }
+  .field-input:focus { border-color: var(--moss); }
+
+  .save-row { display: flex; align-items: center; gap: 10px; margin-top: 0.5rem; }
+  .save-btn { padding: 8px 18px; background: var(--moss); color: var(--paper); border: none; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; cursor: pointer; transition: opacity 0.15s; }
+  .save-btn:hover { opacity: 0.9; }
+  .save-btn:disabled { opacity: 0.5; cursor: default; }
+  .save-confirm { font-size: 12px; color: var(--moss); opacity: 0; transition: opacity 0.2s; }
+  .save-confirm.visible { opacity: 1; }
+
+  /* Course breakdown */
+  .course-breakdown-list { display: flex; flex-direction: column; gap: 8px; }
+  .course-breakdown-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--card); border: 1px solid var(--line); border-radius: 9px; }
+  .course-breakdown-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .course-breakdown-count { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--moss); }
+
+  body.loading .main { opacity: 0; }
+  body.ready .main { opacity: 1; transition: opacity 0.2s; }
+</style>
+</head>
+<body class="loading">
+
+<nav class="nav" aria-label="Main navigation">
+  <a class="nav-brand" href="/home">
+    <div class="nav-seal" aria-hidden="true"><span>S</span></div>
+    <div class="nav-title-wrap"><span class="nav-title-top">Specimen</span><span class="nav-title">Learn</span></div>
+  </a>
+  <div class="nav-items">
+    <a class="nav-item" href="/home">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span class="nav-text">Home</span>
+    </a>
+    <a class="nav-item" href="/cellbiology">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span class="nav-text">Learn</span>
+    </a>
+    <a class="nav-item active" href="/profile" aria-current="page">
+      <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span class="nav-text">Profile</span>
+    </a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="nav-user" id="nav-user" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
+    <div class="nav-avatar" id="nav-avatar">–</div>
+    <div class="nav-user-info">
+      <div class="nav-user-name" id="nav-username">–</div>
+      <div class="nav-user-level" id="nav-level">–</div>
+    </div>
+    <div class="nav-dropdown" id="nav-dropdown">
+      <a class="nav-dropdown-item" href="https://specimen.site" target="_blank">Specimen ↗</a>
+      <button class="nav-dropdown-item signout" id="signout-btn">Sign out</button>
+    </div>
+  </div>
+</nav>
+
+<main class="main">
+  <h1 class="profile-heading">Profile</h1>
+
+  <div class="identity-card">
+    <div class="identity-avatar" id="identity-avatar">–</div>
+    <div class="identity-info">
+      <div class="identity-name-row">
+        <span class="identity-name" id="identity-name">–</span>
+        <span class="identity-username" id="identity-username">–</span>
+      </div>
+      <span class="identity-level-badge" id="identity-level">–</span>
+    </div>
+  </div>
+
+  <div class="xp-card">
+    <div class="xp-card-top">
+      <span class="xp-card-title">Experience</span>
+      <span class="xp-card-count" id="xp-count">–</span>
+    </div>
+    <div class="xp-bar-outer"><div class="xp-bar-inner" id="xp-bar"></div></div>
+    <span class="xp-next-label" id="xp-next">–</span>
+  </div>
+
+  <p class="stats-section-label">Stats</p>
+  <div class="stats-grid">
+    <div class="stat-card" id="streak-card">
+      <div class="stat-card-icon">🔥</div>
+      <p class="stat-card-value" id="stat-streak">0</p>
+      <p class="stat-card-label">Day streak</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">📘</div>
+      <p class="stat-card-value" id="stat-lessons">0</p>
+      <p class="stat-card-label">Lessons done</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">⭐</div>
+      <p class="stat-card-value" id="stat-xp">0</p>
+      <p class="stat-card-label">Total XP</p>
+    </div>
+  </div>
+
+  <div class="settings-card">
+    <p class="settings-label">Display name</p>
+    <div class="field-group">
+      <label class="field-label" for="first-name-input">This is how you'll be greeted around Specimen Learn.</label>
+      <input class="field-input" type="text" id="first-name-input" placeholder="your first name" maxlength="50" />
+    </div>
+    <div class="save-row">
+      <button class="save-btn" id="save-name-btn">Save</button>
+      <span class="save-confirm" id="save-confirm">Saved.</span>
+    </div>
+  </div>
+
+  <p class="stats-section-label">By course</p>
+  <div class="course-breakdown-list" id="course-breakdown"></div>
+</main>
+
+<script>
+const API = '/auth';
+const PROFILE_API = '/profile';
+
+const LEVEL_TITLES = ['Curious Mind','Microscopist','Lab Trainee','Field Researcher','Lab Technician','Research Associate','Research Scientist','Senior Scientist','Research Fellow','Principal Scientist'];
+const LEVEL_THRESHOLDS = [0,100,300,600,1000,1500,2200,3000,4000,5500];
+
+const COURSE_LABELS = {
+  cell_biology: 'Cell Biology',
+  genetics: 'Genetics',
+  virology: 'Virology',
+  biochemistry: 'Biochemistry',
+};
+
+function calcLevel(xp) {
+  let level = 1;
+  for (let i = LEVEL_THRESHOLDS.length - 1; i >= 0; i--) { if (xp >= LEVEL_THRESHOLDS[i]) { level = i + 1; break; } }
+  return Math.min(level, 10);
+}
+
+function xpProgress(xp, level) {
+  const current = LEVEL_THRESHOLDS[level - 1];
+  const next = LEVEL_THRESHOLDS[level] ?? LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1];
+  if (level >= 10) return 100;
+  return Math.round(((xp - current) / (next - current)) * 100);
+}
+
+function initials(name) { return name.slice(0, 2).toUpperCase(); }
+
+async function init() {
+  try {
+    const [sessionRes, statsRes] = await Promise.all([
+      fetch(`${API}/me`, { credentials: 'include' }),
+      fetch(`${PROFILE_API}/stats`, { credentials: 'include' }),
+    ]);
+
+    const sessionData = await sessionRes.json();
+    if (!sessionData.ok) { window.location.href = '/'; return; }
+
+    const statsData = await statsRes.json();
+
+    const user = sessionData.user;
+    const level = calcLevel(user.xp);
+    const title = LEVEL_TITLES[level - 1];
+    const pct = xpProgress(user.xp, level);
+    const nextXp = level < 10 ? LEVEL_THRESHOLDS[level] : null;
+    const displayName = user.first_name || user.username;
+
+    // Nav
+    document.getElementById('nav-avatar').textContent = initials(displayName);
+    document.getElementById('nav-username').textContent = displayName;
+    document.getElementById('nav-level').textContent = title;
+
+    // Identity card
+    document.getElementById('identity-avatar').textContent = initials(displayName);
+    document.getElementById('identity-name').textContent = displayName;
+    document.getElementById('identity-username').textContent = '@' + user.username;
+    document.getElementById('identity-level').textContent = title;
+
+    // XP card
+    document.getElementById('xp-count').textContent = nextXp ? `${user.xp} / ${nextXp} XP` : `${user.xp} XP`;
+    document.getElementById('xp-bar').style.width = pct + '%';
+    document.getElementById('xp-next').textContent = nextXp
+      ? `${nextXp - user.xp} XP to ${LEVEL_TITLES[level]}`
+      : 'Max level reached';
+
+    // First name field
+    document.getElementById('first-name-input').value = user.first_name || '';
+
+    // Stats
+    if (statsData.ok) {
+      const streak = statsData.streak || 0;
+      document.getElementById('stat-streak').textContent = streak;
+      document.getElementById('stat-lessons').textContent = statsData.total_lessons || 0;
+      if (streak > 0) document.getElementById('streak-card').classList.add('streak-active');
+
+      const breakdown = document.getElementById('course-breakdown');
+      const courses = Object.keys(statsData.by_course || {});
+      if (courses.length === 0) {
+        breakdown.innerHTML = `<p style="font-size:13px; color:var(--mute);">No lessons completed yet. Head to <a href="/cellbiology" style="color:var(--moss);">Cell Biology</a> to get started.</p>`;
+      } else {
+        breakdown.innerHTML = courses.map(c => `
+          <div class="course-breakdown-row">
+            <span class="course-breakdown-name">${COURSE_LABELS[c] || c}</span>
+            <span class="course-breakdown-count">${statsData.by_course[c]} lesson${statsData.by_course[c] === 1 ? '' : 's'}</span>
+          </div>`).join('');
+      }
+    }
+    document.getElementById('stat-xp').textContent = user.xp;
+
+    document.body.classList.remove('loading');
+    document.body.classList.add('ready');
+
+  } catch (e) {
+    window.location.href = '/';
+  }
+}
+
+init();
+
+document.getElementById('save-name-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('save-name-btn');
+  const confirm = document.getElementById('save-confirm');
+  const value = document.getElementById('first-name-input').value.trim();
+
+  btn.disabled = true;
+  confirm.classList.remove('visible');
+
+  try {
+    const res = await fetch(`${PROFILE_API}/update`, {
+      method: 'POST', credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ first_name: value }),
+    });
+    const data = await res.json();
+    if (data.ok) {
+      document.getElementById('identity-name').textContent = data.first_name || document.getElementById('identity-username').textContent;
+      document.getElementById('nav-username').textContent = data.first_name || document.getElementById('identity-username').textContent;
+      confirm.classList.add('visible');
+      setTimeout(() => confirm.classList.remove('visible'), 2500);
+    }
+  } catch (e) {}
+
+  btn.disabled = false;
+});
+
+document.getElementById('first-name-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('save-name-btn').click();
+});
+
+const navUser = document.getElementById('nav-user');
+const dropdown = document.getElementById('nav-dropdown');
+navUser.addEventListener('click', (e) => { e.stopPropagation(); const open = dropdown.classList.toggle('open'); navUser.setAttribute('aria-expanded', open); });
+document.addEventListener('click', () => { dropdown.classList.remove('open'); navUser.setAttribute('aria-expanded', 'false'); });
+navUser.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navUser.click(); } });
+document.getElementById('signout-btn').addEventListener('click', async () => {
+  try { await fetch(`${API}/logout`, { method: 'POST', credentials: 'include' }); } catch (e) {}
+  window.location.href = '/';
+});
+</script>
+</body>
+</html>
