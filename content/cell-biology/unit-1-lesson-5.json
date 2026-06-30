@@ -1,0 +1,73 @@
+{
+  "course": "cell_biology",
+  "unit": 1,
+  "lesson": 5,
+  "title": "Unit review",
+  "unit_title": "The Cell",
+  "is_review": true,
+  "read": {
+    "heading": "Unit 1 review",
+    "paragraphs": [
+      "You've covered a lot of ground in this unit: what makes something alive, the two basic kinds of cells, the membrane that gives a cell its identity, and a first look inside the eukaryotic cell. This review pulls together questions from across all four lessons.",
+      "If anything feels uncertain, that's completely normal, this is exactly what review is for. Take your time, and if you get stuck, the earlier lessons are always there to revisit."
+    ]
+  },
+  "example": null,
+  "read_extra": [],
+  "dig_deeper": null,
+  "questions": [
+    {
+      "type": "true_false",
+      "text": "Every living thing is made of at least one cell.",
+      "correct": true,
+      "feedback_correct": "Correct. This is the foundation of cell theory, no exceptions among known life.",
+      "feedback_incorrect": "Actually, this is true. Every known living organism is made of one or more cells."
+    },
+    {
+      "type": "true_false",
+      "text": "Prokaryotic cells contain a nucleus.",
+      "correct": false,
+      "feedback_correct": "Right. Prokaryotic cells have no nucleus at all, that's the key difference from eukaryotic cells.",
+      "feedback_incorrect": "This one's false. Prokaryotic cells have no nucleus, their genetic material floats freely inside the cell."
+    },
+    {
+      "type": "fill_in_blank",
+      "text": "Complete the sentence:",
+      "sentence_before": "The cell membrane is made of a double layer of molecules called the ",
+      "sentence_after": " bilayer.",
+      "answer": "phospholipid",
+      "feedback_correct": "Correct. The phospholipid bilayer forms the structural barrier of every cell membrane.",
+      "feedback_incorrect": "The correct word is phospholipid. This double layer of molecules forms the structural basis of the cell membrane."
+    },
+    {
+      "type": "fill_in_blank",
+      "text": "Complete the sentence:",
+      "sentence_before": "The cell's power plants, which convert nutrients into usable energy, are called ",
+      "sentence_after": ".",
+      "answer": "mitochondria",
+      "feedback_correct": "Correct. Mitochondria handle the energy conversion that powers the rest of the cell.",
+      "feedback_incorrect": "The correct term is mitochondria. These organelles convert nutrients into the energy the cell relies on."
+    },
+    {
+      "type": "matching",
+      "text": "Match each structure to its role.",
+      "pairs": [
+        { "left": "Nucleus", "right": "Holds the cell's DNA" },
+        { "left": "Cell membrane", "right": "Controls what enters and exits the cell" },
+        { "left": "Mitochondria", "right": "Converts nutrients into usable energy" },
+        { "left": "Endoplasmic reticulum", "right": "Builds and processes proteins and fats" }
+      ],
+      "feedback_correct": "All correct. That's the full picture from this unit, you're ready to move on to Unit 2.",
+      "feedback_incorrect": "A couple of these didn't line up. Take another look back through the unit's lessons before retrying."
+    },
+    {
+      "type": "true_false",
+      "text": "Bacteria are an example of a eukaryotic organism.",
+      "correct": false,
+      "feedback_correct": "Right. Bacteria are prokaryotic. Eukaryotic organisms include plants, animals, and fungi.",
+      "feedback_incorrect": "Not quite. Bacteria are prokaryotic, not eukaryotic."
+    }
+  ],
+  "xp_per_question": 15,
+  "completion_xp": 25
+}
