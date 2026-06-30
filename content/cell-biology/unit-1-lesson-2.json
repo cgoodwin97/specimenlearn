@@ -1,0 +1,61 @@
+{
+  "course": "cell_biology",
+  "unit": 1,
+  "lesson": 2,
+  "title": "Two kinds of cells",
+  "unit_title": "The Cell",
+  "read": {
+    "heading": "Two kinds of cells",
+    "paragraphs": [
+      "Not all cells are built the same way. Despite the huge variety of life on Earth, every cell falls into one of just two basic categories: <strong>prokaryotic</strong> or <strong>eukaryotic</strong>. Once you understand this split, you understand the basic architecture of every living thing.",
+      "A prokaryotic cell is the simpler of the two. It has no nucleus and no internal compartments. Its genetic material just floats freely inside the cell. Bacteria are the classic example. They're small, simple, and incredibly successful. There are likely more bacterial cells on Earth than there are stars in the observable universe.",
+      "A eukaryotic cell is more complex. It has a nucleus that keeps its genetic material safely enclosed, along with a whole set of internal compartments that each handle a different job. Plants, animals, fungi, and you are all built from eukaryotic cells. Where a prokaryotic cell is more like one open-plan room, a eukaryotic cell is more like a building with separate offices, each doing specialised work."
+    ]
+  },
+  "example": {
+    "label": "Example",
+    "text": "Picture a small one-room workshop where every tool and material is just out in the open, easy to reach, nothing separated. That's a prokaryotic cell. Now picture a hospital, with a pharmacy, an operating theatre, and a records room, each sealed off and doing one job extremely well. That's a eukaryotic cell. Both can get the work of life done, but one is built for simplicity and speed, the other for complexity and specialisation."
+  },
+  "read_extra": [
+    "It's worth noting that 'simpler' doesn't mean 'worse'. Prokaryotic cells have been around far longer than eukaryotic ones, and bacteria thrive in nearly every environment on the planet, including places far too extreme for most eukaryotic life. Eukaryotic cells traded some of that flexibility for the ability to build large, complex, multicellular bodies, like the one you're using to read this right now."
+  ],
+  "dig_deeper": null,
+  "questions": [
+    {
+      "type": "true_false",
+      "text": "Prokaryotic cells have a nucleus that holds their genetic material.",
+      "correct": false,
+      "feedback_correct": "Correct. Prokaryotic cells have no nucleus at all. Their genetic material floats freely inside the cell.",
+      "feedback_incorrect": "This one's false. Prokaryotic cells don't have a nucleus, that's actually the defining feature of eukaryotic cells. Scroll up to revisit this."
+    },
+    {
+      "type": "true_false",
+      "text": "Bacteria are an example of eukaryotic cells.",
+      "correct": false,
+      "feedback_correct": "Right. Bacteria are prokaryotic, not eukaryotic. They're simple, single-celled organisms with no internal compartments.",
+      "feedback_incorrect": "Not quite. Bacteria are prokaryotic. Eukaryotic cells are the more complex kind found in plants, animals, and fungi. Scroll up to revisit this."
+    },
+    {
+      "type": "fill_in_blank",
+      "text": "Complete the sentence:",
+      "sentence_before": "A cell that contains a nucleus and internal compartments is called a ",
+      "sentence_after": " cell.",
+      "answer": "eukaryotic",
+      "feedback_correct": "Exactly right. Eukaryotic cells are the more complex type, with a nucleus and specialised internal compartments.",
+      "feedback_incorrect": "The correct word is eukaryotic. These are the more complex cells with a nucleus and internal compartments. Scroll up to revisit this."
+    },
+    {
+      "type": "matching",
+      "text": "Match each cell type to its description.",
+      "pairs": [
+        { "left": "Prokaryotic cell", "right": "No nucleus, simple structure" },
+        { "left": "Eukaryotic cell", "right": "Has a nucleus and internal compartments" },
+        { "left": "Bacteria", "right": "A common example of a prokaryotic organism" }
+      ],
+      "feedback_correct": "All correct. This distinction is one you'll keep coming back to throughout the rest of this course.",
+      "feedback_incorrect": "A couple of these didn't line up. Scroll back up to the reading and give it another go."
+    }
+  ],
+  "xp_per_question": 15,
+  "completion_xp": 15
+}
