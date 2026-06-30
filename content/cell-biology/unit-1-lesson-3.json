@@ -1,0 +1,57 @@
+{
+  "course": "cell_biology",
+  "unit": 1,
+  "lesson": 3,
+  "title": "The cell's boundary",
+  "unit_title": "The Cell",
+  "read": {
+    "heading": "The cell's boundary",
+    "paragraphs": [
+      "Every cell is surrounded by a thin, flexible layer called the <strong>cell membrane</strong>. Its job is deceptively simple: decide what gets in and what stays out. Without it, a cell would have no identity, it would just dissolve into its surroundings.",
+      "The membrane is made of a double layer of molecules called <strong>phospholipids</strong>. One end of each molecule loves water, the other end hates it. They naturally arrange themselves into a sheet with the water-hating ends tucked inward, forming a self-sealing barrier that holds the cell together.",
+      "The membrane isn't just a wall, though. It's studded with <strong>proteins</strong> that act as gates, pumps, and sensors, letting nutrients in, pushing waste out, and detecting signals from outside the cell."
+    ]
+  },
+  "example": {
+    "label": "Example",
+    "text": "Think of the cell membrane like the skin of a soap bubble. It's incredibly thin, but it defines exactly where the bubble ends and the air begins. Puncture it and everything collapses. The cell membrane works the same way, it's the boundary that makes a cell a cell."
+  },
+  "read_extra": [
+    "Scientists describe the membrane as 'selectively permeable'. That means it doesn't let everything through equally. Some small molecules slip through easily, while others need a specific protein gate to let them in. This selectivity is what allows a cell to keep its insides chemically different from the outside world, which is essential for nearly everything it does."
+  ],
+  "dig_deeper": {
+    "term": "Plasma membrane · GO:0005886",
+    "definition": "The membrane surrounding a cell that separates the cell from its external environment. It consists of a phospholipid bilayer with embedded proteins and is selectively permeable, regulating the movement of substances into and out of the cell."
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "text": "The cell membrane allows all substances to pass through it freely.",
+      "correct": false,
+      "feedback_correct": "Right. The cell membrane is selectively permeable, it controls what enters and exits, rather than letting everything through freely.",
+      "feedback_incorrect": "This one's false. The membrane is selectively permeable, meaning it controls what passes through rather than letting everything in. Scroll up to revisit this."
+    },
+    {
+      "type": "fill_in_blank",
+      "text": "Complete the sentence:",
+      "sentence_before": "The double layer of molecules that forms the cell membrane is called the ",
+      "sentence_after": " bilayer.",
+      "answer": "phospholipid",
+      "feedback_correct": "Correct spelling too. Phospholipid bilayer, the double layer of molecules whose water-hating tails face inward to form the membrane's core structure.",
+      "feedback_incorrect": "The full term is phospholipid. Lipids are fats, but phospholipids are a specific type with a phosphate head, that's what makes the self-sealing bilayer possible. Scroll up to revisit this."
+    },
+    {
+      "type": "matching",
+      "text": "Match each part of the cell membrane to its role.",
+      "pairs": [
+        { "left": "Phospholipid bilayer", "right": "Forms the structural barrier" },
+        { "left": "Membrane proteins", "right": "Gates, pumps & sensors" },
+        { "left": "Cell membrane", "right": "Controls what enters & exits" }
+      ],
+      "feedback_correct": "All matched. The membrane's structure and its proteins work together, the bilayer holds the cell together while the proteins manage everything that crosses it.",
+      "feedback_incorrect": "A couple of these didn't match correctly. Scroll up to revisit the reading before trying again."
+    }
+  ],
+  "xp_per_question": 15,
+  "completion_xp": 15
+}
