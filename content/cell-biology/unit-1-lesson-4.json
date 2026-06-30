@@ -1,0 +1,65 @@
+{
+  "course": "cell_biology",
+  "unit": 1,
+  "lesson": 4,
+  "title": "Inside the eukaryotic cell",
+  "unit_title": "The Cell",
+  "read": {
+    "heading": "Inside the eukaryotic cell",
+    "paragraphs": [
+      "You now know that a eukaryotic cell has a nucleus and internal compartments. This lesson is your first walk through some of the most important ones. Don't worry about memorising every detail yet, this is an orientation tour, and you'll get a deeper look at each one later on.",
+      "The <strong>nucleus</strong> is the cell's control centre. It holds the cell's DNA, the instructions for everything the cell does and becomes. Almost nothing important happens in the cell without some kind of signal coming from the nucleus.",
+      "The <strong>mitochondria</strong> are the cell's power plants. They take in nutrients and convert them into a usable form of energy that the rest of the cell runs on. A single cell can contain hundreds or even thousands of mitochondria, depending on how much energy it needs.",
+      "The <strong>endoplasmic reticulum</strong>, often just called the ER, is a winding network of membranes that builds and processes many of the cell's proteins and fats. Think of it as part factory floor, part delivery system, moving materials to wherever they're needed next."
+    ]
+  },
+  "example": {
+    "label": "Example",
+    "text": "If a eukaryotic cell were a small city, the nucleus would be city hall, holding the master plans and making the big decisions. The mitochondria would be the power stations, keeping the lights on everywhere else. The endoplasmic reticulum would be the road and rail network, constantly moving goods from where they're made to where they're needed."
+  },
+  "read_extra": [
+    "These three are just the start. Later units in this course will take you inside each compartment properly, including how they work together, what happens when they fail, and how scientists actually study them. For now, the goal is simply to recognise that a eukaryotic cell isn't one open space, it's a coordinated set of specialised parts, each with its own job."
+  ],
+  "dig_deeper": {
+    "term": "Mitochondrion · GO:0005739",
+    "definition": "A semiautonomous, self-replicating organelle found in the cytoplasm of most eukaryotic cells. It is the site of cellular respiration, generating most of the cell's supply of usable chemical energy."
+  },
+  "questions": [
+    {
+      "type": "true_false",
+      "text": "The nucleus holds the cell's DNA.",
+      "correct": true,
+      "feedback_correct": "Correct. The nucleus is the cell's control centre, and the DNA stored inside it carries the instructions for everything the cell does.",
+      "feedback_incorrect": "Actually, this is true. The nucleus holds the cell's DNA and acts as its control centre. Scroll up to revisit this."
+    },
+    {
+      "type": "true_false",
+      "text": "Mitochondria are responsible for converting nutrients into usable energy.",
+      "correct": true,
+      "feedback_correct": "Right. Mitochondria are often called the cell's power plants for exactly this reason.",
+      "feedback_incorrect": "Actually, this is true. Mitochondria take in nutrients and convert them into the energy the rest of the cell relies on. Scroll up to revisit this."
+    },
+    {
+      "type": "fill_in_blank",
+      "text": "Complete the sentence:",
+      "sentence_before": "The winding network of membranes that builds and processes proteins and fats is called the ",
+      "sentence_after": ".",
+      "answer": "endoplasmic reticulum",
+      "feedback_correct": "Exactly right. The endoplasmic reticulum acts like a combined factory floor and delivery network inside the cell.",
+      "feedback_incorrect": "The correct term is endoplasmic reticulum. It's the network responsible for building and moving proteins and fats around the cell. Scroll up to revisit this."
+    },
+    {
+      "type": "matching",
+      "text": "Match each organelle to its role.",
+      "pairs": [
+        { "left": "Nucleus", "right": "Holds the cell's DNA" },
+        { "left": "Mitochondria", "right": "Converts nutrients into usable energy" },
+        { "left": "Endoplasmic reticulum", "right": "Builds and processes proteins and fats" }
+      ],
+      "feedback_correct": "All matched correctly. You now have your first map of the eukaryotic cell, the rest of this course will fill in the detail.",
+      "feedback_incorrect": "A couple of these didn't line up. Scroll up to revisit the reading before trying again."
+    }
+  ],
+  "xp_per_question": 15,
+  "completion_xp": 15
+}
